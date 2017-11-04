@@ -8,7 +8,7 @@ public class ArrayListDemo {
 		//ArrayList of Strings
 		ArrayList<String> names = new ArrayList<String>();
 		
-		names.add("Jan");
+  		names.add("Jan");
 		names.add("Sara");
 		names.add("Fred");
 		names.add("Marc");
