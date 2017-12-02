@@ -4,14 +4,23 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Rocketship extends GameObject {
-	Rocketship rocketship = new Rocketship(45, 45, 50, 50);
+	int speed;
+	int x;
+	int y;
+	int width;
+	int height;
 
 	Rocketship(int x, int y, int width, int height) {
-		super(x, y, width, height);
+	super(x, y, width, height);
+	int speed=5; 
+	this.x=x;
+	this.y=y;
+	this.width=width;
+	this.height= height;
 	}
 
 	void update() {
-
+		
 	}
 
 	void draw(Graphics g) {
