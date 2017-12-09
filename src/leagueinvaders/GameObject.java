@@ -7,12 +7,14 @@ public class GameObject {
 	int y;
 	int width;
 	int height;
+	boolean isAlive = true;
 
-	GameObject(int x, int y, int width, int height) {
+	GameObject(int x, int y, int width, int height, boolean isAlive) {
 		final int MENU_STATE = 0;
 		final int GAME_STATE = 1;
 		final int END_STATE = 2;
 		int currentState;
+		return;
 
 	}
 
@@ -21,7 +23,7 @@ public class GameObject {
 	}
 
 	void draw(Graphics g) {
-		
+
 	}
 
 }

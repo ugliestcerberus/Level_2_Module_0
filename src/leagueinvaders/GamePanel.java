@@ -7,20 +7,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer timer = new Timer(1000 / 60, this);
-	GameObject gameobject = new GameObject(65, 86, 76, 98);
-	Rocketship rocketship= new Rocketship(250,70,50,50);
+	GameObject gameobject = new GameObject(65, 86, 76, 98, true);
+	Rocketship rocketship = new Rocketship(250, 70, 50, 50);
+	ObjectManager manager = new ObjectManager(rocketship);
 	final int MENU_STATE = 0;
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
 	int currentState = MENU_STATE;
 	Font titleFont;
 	Font title;
-	
+
 	GamePanel(String titleOfFont, int plain, int size) {
 		Font titleFont = new Font("Arial", Font.PLAIN, 48);
 	}
@@ -59,10 +61,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	public void keyPressed(KeyEvent e) {
 		System.out.println("Yes");
-		
-		
-		if (currentState > END_STATE) {
-			currentState = MENU_STATE;
+
+		if (currentState > MENU_STATE) {
+			currentState = END_STATE;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (currentState == MENU_STATE) {
@@ -73,20 +74,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				currentState = MENU_STATE;
 			}
 		}
-		if(e.getKeyCode()==KeyEvent.VK_DOWN) {
-		rocketship.y+=13;	
+		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			rocketship.y += 13;
 		}
-		if(e.getKeyCode()==KeyEvent.VK_LEFT) {
-		rocketship.x-=13;
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			rocketship.x -= 13;
 		}
-		if(e.getKeyCode()==KeyEvent.VK_UP) {
-		rocketship.y-=13;	
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			rocketship.y -= 13;
 		}
-		if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
-		rocketship.x+=13;	
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			rocketship.x += 13;
 		}
 	}
-		
 
 	public void keyReleased(KeyEvent e) {
 		System.out.println("destitute");
@@ -98,7 +98,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void updateGameState() {
-		rocketship.update();
+		// invader.update();
+		manager.update();
 	}
 
 	void updateEndState() {
@@ -115,9 +116,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void drawGameState(Graphics g) {
 		g.setColor(Color.BLACK);
-		g.fillRect(0,0,LeagueInvaders.width, LeagueInvaders.height);
-		rocketship.draw(g);
-		
+		g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height);
+		manager.draw(g);
+
 	}
 
 	void drawEndState(Graphics g) {

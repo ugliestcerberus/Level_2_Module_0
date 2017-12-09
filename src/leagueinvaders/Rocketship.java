@@ -11,16 +11,16 @@ public class Rocketship extends GameObject {
 	int height;
 
 	Rocketship(int x, int y, int width, int height) {
-	super(x, y, width, height);
-	int speed=5; 
-	this.x=x;
-	this.y=y;
-	this.width=width;
-	this.height= height;
+		super(x, y, width, height, true);
+		int speed = 5;
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
 	}
 
 	void update() {
-		
+
 	}
 
 	void draw(Graphics g) {
