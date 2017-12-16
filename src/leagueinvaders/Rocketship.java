@@ -12,7 +12,6 @@ public class Rocketship extends GameObject {
 
 	Rocketship(int x, int y, int width, int height) {
 		super(x, y, width, height, true);
-		int speed = 5;
 		this.x = x;
 		this.y = y;
 		this.width = width;

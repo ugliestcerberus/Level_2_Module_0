@@ -63,7 +63,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		System.out.println("Yes");
 
 		if (currentState > MENU_STATE) {
-			currentState = END_STATE;
+			// currentState = END_STATE;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 			if (currentState == MENU_STATE) {
@@ -86,11 +86,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			rocketship.x += 13;
 		}
-	}
-
-	public void keyReleased(KeyEvent e) {
-		System.out.println("destitute");
-
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			manager.addProjectile(new Projectile(100, 100, 10, 10));
+		}
 	}
 
 	void updateMenuState() {
@@ -100,6 +98,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void updateGameState() {
 		// invader.update();
 		manager.update();
+
 	}
 
 	void updateEndState() {
@@ -125,5 +124,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.RED);
 		g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height);
 		g.setFont(titleFont);
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 }
