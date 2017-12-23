@@ -9,13 +9,12 @@ public class GameObject {
 	int height;
 	boolean isAlive = true;
 
-	GameObject(int x, int y, int width, int height, boolean isAlive) {
-		final int MENU_STATE = 0;
-		final int GAME_STATE = 1;
-		final int END_STATE = 2;
-		int currentState;
-		return;
-
+	public GameObject(int x, int y, int width, int height, boolean isAlive) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		this.isAlive = isAlive;
 	}
 
 	void update() {

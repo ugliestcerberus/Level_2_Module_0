@@ -87,7 +87,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			rocketship.x += 13;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			manager.addProjectile(new Projectile(100, 100, 10, 10));
+			manager.addProjectile(new Projectile(rocketship.x, rocketship.y, 10, 10));
 		}
 	}
 
@@ -98,6 +98,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void updateGameState() {
 		// invader.update();
 		manager.update();
+		manager.manageEnemies();
 
 	}
 
