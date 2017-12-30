@@ -104,6 +104,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		System.out.println(manager.getScore());
 		if (rocketship.isAlive == false) {
 			currentState = END_STATE;
+			manager.reset();
+
 		}
 	}
 
@@ -134,7 +136,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Your score was " + manager.getScore(), 100, 100);
 	}
 
-	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 

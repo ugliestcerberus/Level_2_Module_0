@@ -87,4 +87,10 @@ public class ObjectManager {
 			}
 		}
 	}
+
+	public void reset() {
+		// TODO Auto-generated method stub
+
+	}
+
 }
