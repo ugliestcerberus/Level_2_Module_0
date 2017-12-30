@@ -60,7 +60,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void keyPressed(KeyEvent e) {
-		System.out.println("Yes");
+		System.out.println();
 
 		if (currentState > MENU_STATE) {
 			// currentState = END_STATE;
@@ -75,16 +75,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			rocketship.y += 13;
+			rocketship.y += 30;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			rocketship.x -= 13;
+			rocketship.x -= 30;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			rocketship.y -= 13;
+			rocketship.y -= 30;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			rocketship.x += 13;
+			rocketship.x += 30;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			manager.addProjectile(new Projectile(rocketship.x, rocketship.y, 10, 10));
@@ -99,7 +99,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// invader.update();
 		manager.update();
 		manager.manageEnemies();
-
+		manager.purgeObjects();
+		manager.checkCollision();
+		System.out.println(manager.getScore());
+		if (rocketship.isAlive == false) {
+			currentState = END_STATE;
+		}
 	}
 
 	void updateEndState() {
@@ -125,6 +130,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.RED);
 		g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height);
 		g.setFont(titleFont);
+		g.setColor(Color.BLACK);
+		g.drawString("Your score was " + manager.getScore(), 100, 100);
 	}
 
 	@Override
