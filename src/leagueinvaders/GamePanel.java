@@ -7,7 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -22,9 +25,23 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	int currentState = MENU_STATE;
 	Font titleFont;
 	Font title;
+	public static BufferedImage alienImg;
+    public static BufferedImage rocketImg;
+    public static BufferedImage bulletImg;
+    
+
+
 
 	GamePanel(String titleOfFont, int plain, int size) {
 		Font titleFont = new Font("Arial", Font.PLAIN, 48);
+		try {
+        alienImg = ImageIO.read(this.getClass().getResourceAsStream("alien.png"));
+        rocketImg = ImageIO.read(this.getClass().getResourceAsStream("rocket.png"));
+        bulletImg = ImageIO.read(this.getClass().getResourceAsStream("bullet.png"));
+} catch (IOException e) {
+        e.printStackTrace();
+
+}
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -75,19 +92,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			rocketship.y += 30;
+			rocketship.y += 50;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			rocketship.x -= 30;
+			rocketship.x -= 50;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			rocketship.y -= 30;
+			rocketship.y -= 50;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			rocketship.x += 30;
+			rocketship.x += 50;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			manager.addProjectile(new Projectile(rocketship.x, rocketship.y, 10, 10));
+			manager.addProjectile(new Projectile(rocketship.x, rocketship.y, 50, 50));
 		}
 	}
 
@@ -105,7 +122,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (rocketship.isAlive == false) {
 			currentState = END_STATE;
 			manager.reset();
-
+			rocketship= new Rocketship(GAME_STATE, GAME_STATE, GAME_STATE, GAME_STATE);
+			rocketship.add(manager);
 		}
 	}
 
@@ -137,7 +155,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		
 
 	}
 }
